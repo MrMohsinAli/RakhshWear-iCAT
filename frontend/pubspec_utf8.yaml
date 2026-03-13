@@ -1,0 +1,237 @@
+﻿name: smart_ecommerce_app
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.1
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  google_fonts: ^8.0.1
+  provider: ^6.1.5+1
+  font_awesome_flutter: ^10.12.0
+  url_launcher: ^6.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
+
+    - assets/products/Accessories/Belts/Belt1/
+    - assets/products/Accessories/Belts/Belt2/
+    - assets/products/Accessories/Belts/Belt3/
+    - assets/products/Accessories/Belts/Belt4/
+    - assets/products/Accessories/Belts/Belt5/
+    - assets/products/Accessories/Caps/Cap1/
+    - assets/products/Accessories/Caps/Cap2/
+    - assets/products/Accessories/Caps/Cap3/
+    - assets/products/Accessories/Caps/Cap4/
+    - assets/products/Accessories/Caps/Cap5/
+    - assets/products/Accessories/Glasses/Glasses1/
+    - assets/products/Accessories/Glasses/Glasses2/
+    - assets/products/Accessories/Glasses/Glasses3/
+    - assets/products/Accessories/Glasses/Glasses4/
+    - assets/products/Accessories/Glasses/Glasses5/
+    - assets/products/Bottoms/Chinos/Chino1/
+    - assets/products/Bottoms/Chinos/Chino2/
+    - assets/products/Bottoms/Chinos/Chino3/
+    - assets/products/Bottoms/Chinos/Chino4/
+    - assets/products/Bottoms/Chinos/Chino5/
+    - assets/products/Bottoms/Denim/Denim1/
+    - assets/products/Bottoms/Denim/Denim2/
+    - assets/products/Bottoms/Denim/Denim3/
+    - assets/products/Bottoms/Denim/Denim4/
+    - assets/products/Bottoms/Denim/Denim5/
+    - assets/products/Bottoms/Denim/Denim6/
+    - assets/products/Bottoms/Jeans/Jean1/
+    - assets/products/Bottoms/Jeans/Jean2/
+    - assets/products/Bottoms/Jeans/Jean3/
+    - assets/products/Bottoms/Jeans/Jean4/
+    - assets/products/Bottoms/Jeans/Jean5/
+    - assets/products/Bottoms/Shorts/Short1/
+    - assets/products/Bottoms/Shorts/Short2/
+    - assets/products/Bottoms/Shorts/Short3/
+    - assets/products/Bottoms/Shorts/Short4/
+    - assets/products/Bottoms/Shorts/Short5/
+    - assets/products/Footwear/Casual/Casual1/
+    - assets/products/Footwear/Casual/Casual2/
+    - assets/products/Footwear/Casual/Casual3/
+    - assets/products/Footwear/Casual/Casual4/
+    - assets/products/Footwear/Casual/Casual5/
+    - assets/products/Footwear/Comfort/Comfort1/
+    - assets/products/Footwear/Comfort/Comfort2/
+    - assets/products/Footwear/Comfort/Comfort3/
+    - assets/products/Footwear/Comfort/Comfort4/
+    - assets/products/Footwear/Comfort/Comfort5/
+    - assets/products/Footwear/Formal/Formal1/
+    - assets/products/Footwear/Formal/Formal2/
+    - assets/products/Footwear/Formal/Formal3/
+    - assets/products/Footwear/Formal/Formal4/
+    - assets/products/Footwear/Formal/Formal5/
+    - assets/products/Footwear/Sandals/Sandal1/
+    - assets/products/Footwear/Sandals/Sandal2/
+    - assets/products/Footwear/Sandals/Sandal3/
+    - assets/products/Footwear/Sandals/Sandal4/
+    - assets/products/Footwear/Sandals/Sandal5/
+    - assets/products/Footwear/Sneakers/Sneaker1/
+    - assets/products/Footwear/Sneakers/Sneaker2/
+    - assets/products/Footwear/Sneakers/Sneaker3/
+    - assets/products/Footwear/Sneakers/Sneaker4/
+    - assets/products/Footwear/Sneakers/Sneaker5/
+    - assets/products/Fragrances/Attar/Attar1/
+    - assets/products/Fragrances/Attar/Attar2/
+    - assets/products/Fragrances/Attar/Attar3/
+    - assets/products/Fragrances/Attar/Attar4/
+    - assets/products/Fragrances/Attar/Attar5/
+    - assets/products/Fragrances/Body Spray/Body Spray1/
+    - assets/products/Fragrances/Body Spray/Body Spray2/
+    - assets/products/Fragrances/Body Spray/Body Spray3/
+    - assets/products/Fragrances/Body Spray/Body Spray4/
+    - assets/products/Fragrances/Body Spray/Body Spray5/
+    - assets/products/Fragrances/Perfumes/perfum1/
+    - assets/products/Fragrances/Perfumes/perfum2/
+    - assets/products/Fragrances/Perfumes/perfum3/
+    - assets/products/Fragrances/Perfumes/perfum4/
+    - assets/products/Fragrances/Perfumes/perfum5/
+    - assets/products/Knitwear/Mufflers/Muffler1/
+    - assets/products/Knitwear/Mufflers/Muffler2/
+    - assets/products/Knitwear/Mufflers/Muffler3/
+    - assets/products/Knitwear/Mufflers/Muffler4/
+    - assets/products/Knitwear/Mufflers/Muffler5/
+    - assets/products/Knitwear/Sweaters/Sweater1/
+    - assets/products/Knitwear/Sweaters/Sweater2/
+    - assets/products/Knitwear/Sweaters/Sweater3/
+    - assets/products/Knitwear/Sweaters/Sweater4/
+    - assets/products/Knitwear/Sweaters/Sweater5/
+    - assets/products/Knitwear/Sweaters/Sweater6/
+    - assets/products/Knitwear/Sweatshirts/Sweatshirt1/
+    - assets/products/Knitwear/Sweatshirts/Sweatshirt2/
+    - assets/products/Knitwear/Sweatshirts/Sweatshirt3/
+    - assets/products/Knitwear/Sweatshirts/Sweatshirt4/
+    - assets/products/Knitwear/Sweatshirts/Sweatshirt5/
+    - assets/products/Kurta Shalwar/Kameez Shalwar/Kameez Shalwar1/
+    - assets/products/Kurta Shalwar/Kameez Shalwar/Kameez Shalwar2/
+    - assets/products/Kurta Shalwar/Kameez Shalwar/Kameez Shalwar3/
+    - assets/products/Kurta Shalwar/Kameez Shalwar/Kameez Shalwar4/
+    - assets/products/Kurta Shalwar/Kameez Shalwar/Kameez Shalwar5/
+    - assets/products/Kurta Shalwar/Kurta Trouser/Kurta Trouser1/
+    - assets/products/Kurta Shalwar/Kurta Trouser/Kurta Trouser2/
+    - assets/products/Kurta Shalwar/Kurta Trouser/Kurta Trouser3/
+    - assets/products/Kurta Shalwar/Kurta Trouser/Kurta Trouser4/
+    - assets/products/Kurta Shalwar/Kurta Trouser/Kurta Trouser5/
+    - assets/products/Kurta Shalwar/Unstitched Fabric/Unstitched Fabric1/
+    - assets/products/Kurta Shalwar/Unstitched Fabric/Unstitched Fabric2/
+    - assets/products/Kurta Shalwar/Unstitched Fabric/Unstitched Fabric3/
+    - assets/products/Kurta Shalwar/Unstitched Fabric/Unstitched Fabric4/
+    - assets/products/Kurta Shalwar/Unstitched Fabric/Unstitched Fabric5/
+    - assets/products/Kurta Shalwar/Unstitched Fabric/Unstitched Fabric6/
+    - assets/products/Outerwear/Blazers/Blazer1/
+    - assets/products/Outerwear/Blazers/Blazer2/
+    - assets/products/Outerwear/Blazers/Blazer3/
+    - assets/products/Outerwear/Blazers/Blazer4/
+    - assets/products/Outerwear/Blazers/Blazer5/
+    - assets/products/Outerwear/Hoodies/Hoodie1/
+    - assets/products/Outerwear/Hoodies/Hoodie2/
+    - assets/products/Outerwear/Hoodies/Hoodie3/
+    - assets/products/Outerwear/Hoodies/Hoodie4/
+    - assets/products/Outerwear/Hoodies/Hoodie5/
+    - assets/products/Outerwear/Jackets/Jacket1/
+    - assets/products/Outerwear/Jackets/Jacket2/
+    - assets/products/Outerwear/Jackets/Jacket3/
+    - assets/products/Outerwear/Jackets/Jacket4/
+    - assets/products/Outerwear/Jackets/Jacket5/
+    - assets/products/Outerwear/Shawls/Shawl1/
+    - assets/products/Outerwear/Shawls/Shawl2/
+    - assets/products/Outerwear/Shawls/Shawl3/
+    - assets/products/Outerwear/Shawls/Shawl4/
+    - assets/products/Outerwear/Shawls/Shawl5/
+    - assets/products/Shirts/Formals/Formal1/
+    - assets/products/Shirts/Formals/Formal2/
+    - assets/products/Shirts/Formals/Formal3/
+    - assets/products/Shirts/Formals/Formal4/
+    - assets/products/Shirts/Formals/Formla5/
+    - assets/products/Shirts/Polos/polo1/
+    - assets/products/Shirts/Polos/polo2/
+    - assets/products/Shirts/Polos/polo3/
+    - assets/products/Shirts/Polos/polo4/
+    - assets/products/Shirts/Polos/polo5/
+    - assets/products/Shirts/Tees/Tshirt1/
+    - assets/products/Shirts/Tees/Tshirt2/
+    - assets/products/Shirts/Tees/Tshirt3/
+    - assets/products/Shirts/Tees/Tshirt4/
+    - assets/products/Shirts/Tees/Tshirt5/
