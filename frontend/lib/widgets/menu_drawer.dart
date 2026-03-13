@@ -430,28 +430,60 @@ class _ExpandableCategory extends StatefulWidget {
   State<_ExpandableCategory> createState() => _ExpandableCategoryState();
 }
 
-class _ExpandableCategoryState extends State<_ExpandableCategory> {
+class _ExpandableCategoryState extends State<_ExpandableCategory>
+    with SingleTickerProviderStateMixin {
   bool _isExpanded = false;
   bool _isHovering = false;
+  late AnimationController _staggerCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    // Duration scales with the number of subcategories so each item
+    // has roughly 60 ms of its own window inside the total animation.
+    final totalMs = 60 * (widget.category.subcategories.length + 1);
+    _staggerCtrl = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: totalMs.clamp(200, 600)),
+    );
+  }
+
+  @override
+  void dispose() {
+    _staggerCtrl.dispose();
+    super.dispose();
+  }
+
+  void _toggle() {
+    setState(() => _isExpanded = !_isExpanded);
+    if (_isExpanded) {
+      _staggerCtrl.forward(from: 0);
+    } else {
+      _staggerCtrl.reverse();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final subs = widget.category.subcategories;
+    final n = subs.length;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Category Header
+        // ── Category Header ────────────────────────────────────────────
         SelectionContainer.disabled(
           child: MouseRegion(
             onEnter: (_) => setState(() => _isHovering = true),
             onExit: (_) => setState(() => _isHovering = false),
             cursor: SystemMouseCursors.click,
             child: InkWell(
-              onTap: () => setState(() => _isExpanded = !_isExpanded),
+              onTap: _toggle,
               hoverColor: Colors.transparent,
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 6), // Reduced from 10
+                padding: const EdgeInsets.symmetric(vertical: 6),
                 child: Row(
                   children: [
                     Text(
@@ -464,10 +496,11 @@ class _ExpandableCategoryState extends State<_ExpandableCategory> {
                       ),
                     ),
                     const Spacer(),
-                    Icon(
-                      _isExpanded ? Icons.expand_less : Icons.expand_more,
-                      size: 20,
-                      color: Colors.black,
+                    AnimatedRotation(
+                      turns: _isExpanded ? 0.5 : 0.0,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeInOutCubic,
+                      child: const Icon(Icons.expand_more, size: 20, color: Colors.black),
                     ),
                   ],
                 ),
@@ -476,19 +509,36 @@ class _ExpandableCategoryState extends State<_ExpandableCategory> {
           ),
         ),
 
-        // Subcategories (shown when clicked)
+        // ── Subcategories — staggered entrance ────────────────────────
         if (_isExpanded)
           Container(
             padding: const EdgeInsets.only(left: 16, bottom: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.category.subcategories.map((sub) {
-                return _SubcategoryItem(
-                  text: sub,
-                  categoryId: widget.category.id,
-                  subcategory: sub,
+              children: List.generate(n, (i) {
+                // Each item occupies an evenly-spaced interval inside [0, 1]
+                final start = i / (n + 1);
+                final end = (i + 1) / (n + 1);
+                final interval = CurvedAnimation(
+                  parent: _staggerCtrl,
+                  curve: Interval(start, end.clamp(0.0, 1.0), curve: Curves.easeOutCubic),
                 );
-              }).toList(),
+                return AnimatedBuilder(
+                  animation: interval,
+                  builder: (context, child) => Opacity(
+                    opacity: interval.value.clamp(0.0, 1.0),
+                    child: Transform.translate(
+                      offset: Offset(-16 * (1 - interval.value), 0),
+                      child: child,
+                    ),
+                  ),
+                  child: _SubcategoryItem(
+                    text: subs[i],
+                    categoryId: widget.category.id,
+                    subcategory: subs[i],
+                  ),
+                );
+              }),
             ),
           ),
       ],

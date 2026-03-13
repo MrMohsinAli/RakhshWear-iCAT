@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -51,25 +51,29 @@ class _WebLayoutState extends State<WebLayout> {
             builder: (context, t, _) {
               return Stack(
                 children: [
-                  // ── Blurred + translated content ───────────────────────
+                  // ── Translated content (slides right as drawer opens) ──
                   Transform.translate(
                     offset: Offset(60 * t, 0),
-                    child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(
-                        sigmaX: 6 * t,
-                        sigmaY: 6 * t,
-                        tileMode: TileMode.decal,
-                      ),
-                      child: Column(
-                        children: [
-                          const _AnnouncementBar(),
-                          _NavBar(
-                            drawerOpenNotifier: _drawerOpenNotifier,
-                            scaffoldKey: _scaffoldKey,
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            const _AnnouncementBar(),
+                            _NavBar(
+                              drawerOpenNotifier: _drawerOpenNotifier,
+                              scaffoldKey: _scaffoldKey,
+                            ),
+                            Expanded(child: widget.body),
+                          ],
+                        ),
+                        // ── White light overlay ────────────────────────────
+                        if (t > 0)
+                          IgnorePointer(
+                            child: Container(
+                              color: Colors.white.withValues(alpha: 0.55 * t),
+                            ),
                           ),
-                          Expanded(child: widget.body),
-                        ],
-                      ),
+                      ],
                     ),
                   ),
                   // ── Dim overlay ────────────────────────────────────────
@@ -671,7 +675,7 @@ class _MenuNavLinkState extends State<_MenuNavLink> {
 
     return OverlayEntry(
       builder: (context) => Positioned(
-        width: 220,
+        width: 170,
         child: CompositedTransformFollower(
           link: _layerLink,
           showWhenUnlinked: false,
@@ -681,7 +685,7 @@ class _MenuNavLinkState extends State<_MenuNavLink> {
             onExit: (event) {
               if (event.localPosition.dy > 0 ||
                   event.localPosition.dx < 0 ||
-                  event.localPosition.dx > 220) {
+                  event.localPosition.dx > 170) {
                 widget.hoverNotifier.value = null;
               }
             },
